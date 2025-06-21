@@ -1,6 +1,6 @@
 # This script analyzes NYC 311 service requests for sidewalk blockages using DBSCAN clustering
 # to identify areas with high concentrations of complaints. It processes coordinate data,
-# finds the top 5 densest clusters of reports, and visualizes them on an interactive map.
+# finds the top 5 densest clusters of reports, and visualizes all the cluster on an interactive map.
 
 import pandas as pd, geopandas as gpd
 from shapely.geometry import Point

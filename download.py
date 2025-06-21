@@ -1,6 +1,13 @@
 # -----------------------------------------------------------
 # 2.  Download images + metadata via Mapillary API v4
 # -----------------------------------------------------------
+# This script downloads images and metadata from Mapillary's API v4 for specific geographic areas.
+# It focuses on 3 key clusters identified in a previous clustering analysis.
+# For each cluster's bounding box coordinates, it queries the Mapillary API to retrieve
+# street-level imagery and associated metadata (location, compass angle, capture time etc).
+# The data is saved to data/raw/ with images organized by cluster.
+# Requires a Mapillary API token set as MAPILLARY_TOKEN environment variable.
+
 from pathlib import Path
 from tqdm.auto import tqdm
 import os, json, requests, time
@@ -13,31 +20,31 @@ OUT_DIR   = Path("data/raw")
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # Test mode: limit to 3 images per cluster for testing
-TEST_MODE = True
+TEST_MODE = False
 TEST_IMAGES_PER_CLUSTER = 3
 
 # Top 3 clusters from clustering analysis (output from find_top_clusters.py)
 hot_bboxes = [
     {
-        "west": -73.928780,
-        "south": 40.831735,
-        "east": -73.928346,
-        "north": 40.832065,
-        "cid": 0
-    },
-    {
-        "west": -73.929171,
-        "south": 40.831214,
-        "east": -73.928737,
-        "north": 40.831544,
-        "cid": 17
-    },
-    {
-        "west": -73.914938,
-        "south": 40.782027,
-        "east": -73.914378,
-        "north": 40.782447,
+        "west": -74.003774,
+        "south": 40.732110,
+        "east": -74.003323,
+        "north": 40.732472,
         "cid": 3
+    },
+    {
+        "west": -74.001418,
+        "south": 40.736482,
+        "east": -74.000942,
+        "north": 40.736883,
+        "cid": 28
+    },
+    {
+        "west": -73.996165,
+        "south": 40.719973,
+        "east": -73.995732,
+        "north": 40.720302,
+        "cid": 1
     }
 ]
 
