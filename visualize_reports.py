@@ -1,3 +1,8 @@
+# This script analyzes NYC 311 service requests for sidewalk blockages by creating a buffer
+# around each complaint location and finding their union. It generates a bounding box around
+# all buffered points to identify the overall area affected by sidewalk issues, then
+# visualizes this on an interactive map along with sample complaint locations.
+
 import pandas as pd, geopandas as gpd
 from shapely.geometry import Point
 import folium
@@ -40,7 +45,7 @@ folium.GeoJson(
 ).add_to(m)
 
 # Add some sample points (first 100 points to avoid overcrowding)
-sample_points = gdf.head(1000)
+sample_points = gdf.head(3000)
 for idx, row in sample_points.iterrows():
     # Double-check for NaN values before plotting
     if not pd.isna(row.geometry.y) and not pd.isna(row.geometry.x):
