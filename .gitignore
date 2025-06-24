@@ -45,7 +45,9 @@ Thumbs.db
 
 # Local
 .env
+venv/
 vite.config.*.timestamp*
 vitest.config.*.timestamp*
 demo
 data
+*.html
